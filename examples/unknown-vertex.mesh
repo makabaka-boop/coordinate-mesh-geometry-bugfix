@@ -1,0 +1,9 @@
+# Rejected: face references undeclared vertex x
+v a
+v b
+v c
+v d
+f a b c
+f a c d
+f a d b
+f b d x

@@ -1,0 +1,9 @@
+# Rejected: face record carries an extra field
+v a
+v b
+v c
+v d
+f a b c
+f a c d
+f a d b extra
+f b d c

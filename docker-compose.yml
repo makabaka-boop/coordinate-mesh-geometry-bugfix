@@ -1,0 +1,12 @@
+services:
+  meshcheck:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: meshcheck:latest
+    # Mount the host directory containing .mesh documents at /work and run,
+    # for example:
+    #   docker compose run --rm meshcheck /work/your-model.mesh
+    volumes:
+      - ./examples:/examples:ro
+      - ./work:/work:ro

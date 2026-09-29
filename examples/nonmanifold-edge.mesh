@@ -1,0 +1,22 @@
+# Three tetrahedra glued along a single shared edge a-b: six directed
+# faces meet at a-b (two per tetrahedron), so the edge is non-manifold
+v a
+v b
+v c
+v d
+v e
+v f
+v g
+v h
+f a b c
+f a c d
+f a d b
+f b d c
+f a b e
+f a e f
+f a f b
+f b f e
+f a b g
+f a g h
+f a h b
+f b h g

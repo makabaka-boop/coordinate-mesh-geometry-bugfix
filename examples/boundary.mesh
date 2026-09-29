@@ -1,0 +1,11 @@
+# Triangular bipyramid with one top face removed: boundary edge a-b
+v a
+v b
+v c
+v t
+v u
+f b c t
+f c a t
+f a u b
+f b u c
+f c u a

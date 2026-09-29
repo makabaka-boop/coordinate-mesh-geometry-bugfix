@@ -1,0 +1,17 @@
+[package]
+name = "meshcheck"
+version = "0.1.0"
+edition = "2021"
+description = "Combinatorial topology auditor for directed triangle soups"
+license = "MIT"
+
+[lib]
+name = "meshcheck"
+path = "src/lib.rs"
+
+[[bin]]
+name = "meshcheck"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 2

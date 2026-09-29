@@ -1,0 +1,9 @@
+# Tetrahedron whose first face is flipped: edge a-b traversed same way twice
+v a
+v b
+v c
+v d
+f b a c
+f a c d
+f a d b
+f b d c

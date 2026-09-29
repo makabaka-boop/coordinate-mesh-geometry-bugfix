@@ -1,0 +1,17 @@
+# Two tetrahedral shells pinched at exactly one shared vertex a:
+# the link of a is two disjoint cycles (two sectors), not one fan
+v a
+v b
+v c
+v d
+v e
+v f
+v g
+f a b c
+f a c d
+f a d b
+f b d c
+f a e f
+f a f g
+f a g e
+f e g f

@@ -1,0 +1,11 @@
+# Rejected: same undirected face appears twice, even though the second
+# copy is written in the reverse direction
+v a
+v b
+v c
+v d
+f a b c
+f a c d
+f a d b
+f b d c
+f c b a

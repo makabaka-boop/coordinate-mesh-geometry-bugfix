@@ -1,0 +1,18 @@
+# Two disjoint closed tetrahedra: every edge is fine, every vertex has one
+# fan, but the whole face complex is not connected
+v a
+v b
+v c
+v d
+v e
+v f
+v g
+v h
+f a b c
+f a c d
+f a d b
+f b d c
+f e f g
+f e g h
+f e h f
+f f h g

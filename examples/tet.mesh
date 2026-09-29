@@ -1,0 +1,9 @@
+# Regular oriented tetrahedron: closed sphere, V=4 E=6 F=4 chi=2 genus=0
+v a
+v b
+v c
+v d
+f a b c
+f a c d
+f a d b
+f b d c
