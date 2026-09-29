@@ -88,7 +88,7 @@ geometry-fail kind=intersection faces=3,7
 
 ```bash
 cargo build --release
-cargo test                                        # 30 个证据测试
+cargo test                                        # 证据与几何一致性测试
 ./target/release/meshcheck examples/torus9.mesh   # 文件参数
 cat examples/tet.mesh | meshcheck                 # 无参数或 `-` 时读标准输入
 ```
@@ -117,6 +117,10 @@ docker compose run --rm meshcheck /work/your-model.mesh
 | `nonmanifold-edge.mesh`         | 三个四面体共一条边 → 非流形边 `a-b`        |
 | `two-shells-shared-vertex.mesh` | 两壳共一个顶点 → 顶点 `a` 两个扇区         |
 | `disjoint-shells.mesh`          | 两个互不相连的封闭四面体 → 分量见证 `e`    |
+| `tet-coord.mesh`                | 带整数坐标的封闭四面体 → 几何审计通过 `ok` |
+| `octahedron-coord.mesh`         | 坐标八面体；相对面 AABB 重叠但平面平行不接触 → `ok` |
+| `degenerate-face.mesh`          | 第 4 个面压成一条线 → `kind=degenerate face=4` |
+| `self-overlap.mesh`            | 共边两面同侧重叠 → `kind=intersection faces=2,4` |
 | `unknown-vertex.mesh`           | 引用未声明顶点                             |
 | `duplicate-face.mesh`           | 无向面重复（第二份反向书写）               |
 | `extra-field.mesh`              | 面记录含额外字段                           |

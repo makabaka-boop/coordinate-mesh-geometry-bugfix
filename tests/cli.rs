@@ -64,6 +64,26 @@ fn disjoint_shells_exits_four() {
 }
 
 #[test]
+fn coordinate_bodies_and_geometry_failures_have_expected_output() {
+    assert_eq!(
+        run_file("tet-coord.mesh"),
+        ("ok V=4 E=6 F=4 chi=2 genus=0".to_string(), 0)
+    );
+    assert_eq!(
+        run_file("octahedron-coord.mesh"),
+        ("ok V=6 E=12 F=8 chi=2 genus=0".to_string(), 0)
+    );
+    assert_eq!(
+        run_file("degenerate-face.mesh"),
+        ("geometry-fail kind=degenerate face=4".to_string(), 5)
+    );
+    assert_eq!(
+        run_file("self-overlap.mesh"),
+        ("geometry-fail kind=intersection faces=2,4".to_string(), 5)
+    );
+}
+
+#[test]
 fn rejected_documents_exit_one() {
     assert_eq!(
         run_file("unknown-vertex.mesh"),

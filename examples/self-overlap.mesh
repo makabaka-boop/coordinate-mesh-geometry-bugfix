@@ -1,0 +1,17 @@
+# Two tetrahedra (a b c d) and (a b c e) glued along their shared face
+# a-b-c form a watertight triangular bipyramid (V=5 E=9 F=6). Faces
+# 2 (a d b) and 4 (a b e) share edge a-b; d and e lie in the SAME plane
+# z=0 on the same side of line a-b, so the triangles overlap past their
+# common edge instead of folding away. Every face has nonzero area and
+# every earlier face pair joins legitimately, so the witness is faces=2,4.
+v a 0 0 0
+v b 6 0 0
+v c 0 0 5
+v d 2 4 0
+v e 4 3 0
+f a c d
+f a d b
+f b d c
+f a b e
+f b c e
+f c a e

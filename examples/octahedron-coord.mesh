@@ -1,0 +1,19 @@
+# Closed octahedron (V=6 E=12 F=8, sphere) with integer coordinates.
+# Opposite faces, e.g. face 1 (x y z) in x+y+z=2 and face 7 (mx mz my) in
+# x+y+z=-2, have overlapping axis-aligned bounding boxes but lie on
+# parallel, disjoint planes. The old AABB heuristic wrongly reported an
+# intersection; correct embedding audit yields ok.
+v x 2 0 0
+v mx -2 0 0
+v y 0 2 0
+v my 0 -2 0
+v z 0 0 2
+v mz 0 0 -2
+f x y z
+f y mx z
+f mx my z
+f my x z
+f x mz y
+f y mz mx
+f mx mz my
+f my mz x

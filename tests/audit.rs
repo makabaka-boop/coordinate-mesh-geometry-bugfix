@@ -148,6 +148,85 @@ fn disjoint_closed_shells_fail_global_connectivity() {
     );
 }
 
+// ---------- coordinate geometry stage --------------------------------------
+
+#[test]
+fn coordinate_tetrahedron_passes_geometry_audit() {
+    assert_eq!(
+        analyze_fixture("tet-coord.mesh"),
+        Report::Ok {
+            vertices: 4,
+            edges: 6,
+            faces: 4,
+            euler: 2,
+            genus: 0,
+        }
+    );
+}
+
+#[test]
+fn octahedron_disjoint_faces_with_overlapping_aabbs_are_ok() {
+    // Old AABB heuristic flagged opposite (parallel) octahedron faces as
+    // intersections even though their embeddings never meet.
+    assert_eq!(
+        analyze_fixture("octahedron-coord.mesh"),
+        Report::Ok {
+            vertices: 6,
+            edges: 12,
+            faces: 8,
+            euler: 2,
+            genus: 0,
+        }
+    );
+}
+
+#[test]
+fn collapsed_face_is_reported_as_degenerate_in_face_order() {
+    assert_eq!(
+        analyze_fixture("degenerate-face.mesh"),
+        Report::GeometryFailed {
+            first: 4,
+            second: None,
+            kind: "degenerate",
+        }
+    );
+}
+
+#[test]
+fn coplanar_overlap_past_shared_edge_is_intersection_pair() {
+    assert_eq!(
+        analyze_fixture("self-overlap.mesh"),
+        Report::GeometryFailed {
+            first: 2,
+            second: Some(4),
+            kind: "intersection",
+        }
+    );
+}
+
+#[test]
+fn coordinate_geometry_runs_after_topology_stages() {
+    // A coordinate document with a flipped face still reports the edge
+    // fault: geometry never runs before topology is fully settled.
+    let doc = "\
+v a 0 0 0
+v b 2 0 0
+v c 1 2 0
+v d 1 1 3
+f b a c
+f a c d
+f a d b
+f b d c
+";
+    match analyze(doc) {
+        Report::EdgeFailed(f) => {
+            assert_eq!((f.a.as_str(), f.b.as_str()), ("a", "b"));
+            assert_eq!(f.fault, EdgeFault::Misoriented);
+        }
+        other => panic!("expected an edge fault, got {other:?}"),
+    }
+}
+
 // ---------- parse rejection evidence --------------------------------------
 
 #[test]

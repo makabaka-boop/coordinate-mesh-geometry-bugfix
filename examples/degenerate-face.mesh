@@ -1,0 +1,11 @@
+# Tetrahedral topology passes, but face 3 (a d b) is zero-area: d sits
+# exactly on edge a-b, so the triangle collapses to a line. The earliest
+# zero-area face is reported before any pair witness.
+v a 0 0 0
+v b 4 0 0
+v c 1 2 0
+v d 1 0 0
+f a b c
+f b d c
+f a c d
+f a d b
